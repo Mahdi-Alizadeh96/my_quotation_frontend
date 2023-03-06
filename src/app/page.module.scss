@@ -1,0 +1,9 @@
+// @use '../styles/variablesStyles.module.scss';
+
+.main {
+  color: $primary-color;
+}
+
+.hello {
+  @include reset-list;
+}
