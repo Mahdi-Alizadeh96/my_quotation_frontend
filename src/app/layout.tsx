@@ -3,7 +3,7 @@ import '@/styles/globals.scss';
 // global styles>
 
 // <import configs
-import { sansita } from '@/lib/configs/fonts'; // import font
+import { sansita } from '&/configs/fonts'; // import font
 // import configs>
 
 // <meta data

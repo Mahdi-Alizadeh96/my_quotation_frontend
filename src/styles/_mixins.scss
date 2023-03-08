@@ -1,4 +1,4 @@
-@mixin reset-list {
-    color: green;
-    padding: 1rem;
-}
+// light box shadow
+@mixin box-shadow-light {
+    box-shadow: 0px 0px 20px map-get($additional , 'box-shadow')
+};

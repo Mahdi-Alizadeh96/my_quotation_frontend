@@ -1,0 +1,8 @@
+.header {
+    text-align: center;
+    color: map-get($colors , primary);
+    padding: 1rem;
+    padding-bottom: 1.6rem;
+    font-style: italic;
+    @include box-shadow-light();
+}

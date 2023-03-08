@@ -5,8 +5,14 @@
         "secondary" : #a44200,
         "light" : #d58936,
         "dark" : #3c1518,
-        "back-ground" : #f1f1d2,
+        "back-ground" : #fcfcef,
         "white-color" : #fff
+    );
+
+// additional styles set
+
+    $additional: (
+        "box-shadow" : #dddddd
     );
 
 // font sizes for the project

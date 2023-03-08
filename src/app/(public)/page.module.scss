@@ -1,7 +1,3 @@
 .main {
   color: map-get($colors , primary);
 }
-
-.hello {
-  @include reset-list;
-}
