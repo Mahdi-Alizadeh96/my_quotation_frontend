@@ -10,8 +10,8 @@ module.exports = (phase, {defaultConfig}) => {
   if ('sassOptions' in defaultConfig) {
       defaultConfig['sassOptions'] = {
         prependData: `
-                      @import "./src/styles/variablesStyles.module.scss";
-                      @import "./src/styles/mixins.module.scss";
+                      @import "./src/styles/_variables.scss";
+                      @import "./src/styles/_mixins.scss";
                       `,
       }
   }

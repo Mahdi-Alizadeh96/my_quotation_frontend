@@ -1,7 +1,5 @@
-// @use '../styles/variablesStyles.module.scss';
-
 .main {
-  color: $primary-color;
+  color: map-get($colors , primary);
 }
 
 .hello {
