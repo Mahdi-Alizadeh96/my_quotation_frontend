@@ -1,4 +1,15 @@
+// desktop-size-optimize -- keeps every elements center for desktop sizes more than 1200 px
+@mixin desktop-size-optimize {
+    max-width: 1024px;
+    margin: auto
+};
+
 // light box shadow
 @mixin box-shadow-light {
     box-shadow: 0px 0px 20px map-get($additional , 'box-shadow')
 };
+
+// box light hover
+@mixin box-light-hover {
+    background-color: map-get($colors, light-back);
+}

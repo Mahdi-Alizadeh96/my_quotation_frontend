@@ -11,7 +11,8 @@ body {
 }
 
 body {
-  background: map-get($colors , back-ground)
+  background: map-get($colors , back-ground);
+  transition: 0.3s; // global transition
 }
 
 a {

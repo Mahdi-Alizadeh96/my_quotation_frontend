@@ -1,0 +1,36 @@
+.quotationPreview {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: map-get($border-radius , small);
+    cursor: pointer;
+    .WrittenBy {
+        color: map-get($colors , secondary);
+        font-style: italic;
+        margin-bottom : 1rem;
+    }
+    .quotationText {
+        margin: 0 1.5rem;
+        line-height: 2;
+        text-align: center;
+        color: map-get($colors , 'black');
+    }
+    .specifications {
+        display: flex;
+        margin-top: 1rem;
+        justify-content: space-between;
+        .time {
+            font-size: map-get($font-size , extra-small);
+            color: map-get($colors , light-gray);
+            font-style: italic;
+        }
+        .quoteBy {
+            font-size: map-get($font-size , small);
+            color: map-get($colors , bold-gray);
+            font-style: italic;
+        }
+    }
+    &:hover {
+        @include box-light-hover();
+    }
+}

@@ -5,8 +5,12 @@
         "secondary" : #a44200,
         "light" : #d58936,
         "dark" : #3c1518,
-        "back-ground" : #fcfcef,
-        "white-color" : #fff
+        "back-ground" : #fcfcf3,
+        "light-back" : #f8f8ed,
+        "white-color" : #fff,
+        "light-gray" : #9b9b9b,
+        "bold-gray" : #4e4e4e,
+        "black" : #242424
     );
 
 // additional styles set
@@ -23,5 +27,14 @@
         "medium" : 1rem,
         "small" : 0.875rem,
         "extra-small" : 0.75rem
-    )
+    );
 
+// border radiuses
+
+    $border-radius: (
+        "extra-large" : 0.625rem,
+        "large" : 0.438rem,
+        "medium" : 0.7rem,
+        "small" : 0.313rem,
+        "extra-small" : 0.188rem
+    )

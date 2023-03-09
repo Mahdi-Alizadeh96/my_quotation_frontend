@@ -1,0 +1,8 @@
+.publicLayout {
+    width: 100%
+}
+
+.layoutContent {
+    @include desktop-size-optimize();
+    margin-top: 2rem;
+}
