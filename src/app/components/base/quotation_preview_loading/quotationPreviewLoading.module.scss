@@ -1,0 +1,7 @@
+.quotationPreviewLoading {
+    width: 100%;
+    margin: 0.7rem 0;
+    height: 8rem;
+    border-radius: map-get($border-radius , medium);
+    @include gradient-background('ltr');
+}

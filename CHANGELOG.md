@@ -1,5 +1,11 @@
 # My Quotation Project - Next.js(13) FrontEnd
 
+## [0.1.01] - 2023-03-10
+
+### Added
+
+- add loading for main page content
+
 ## [0.1.00] - 2023-03-09
 
 ### Added

@@ -12,4 +12,12 @@
 // box light hover
 @mixin box-light-hover {
     background-color: map-get($colors, light-back);
-}
+};
+
+// gradient background
+@mixin gradient-background($direction) {
+    background-image: map-get($gradients , loading-back-ground);
+    @if $direction == 'ltr' {
+        transform: rotate(180deg);
+    };
+};

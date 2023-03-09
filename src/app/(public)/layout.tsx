@@ -1,10 +1,18 @@
+// <import react
+import { Suspense } from 'react';
+// import react>
+
 // <import styles
 import styles from './layout.module.scss';
 // import styles>
 
 // <import Global components
-import { Footer, Header } from "@/app/components";
+import Components from "@/app/components";
 // import Global components>
+
+// <import loading
+import Loading from './loading';
+// import loading>
 
 /**
  * @description public layout with header & footer
@@ -13,11 +21,13 @@ import { Footer, Header } from "@/app/components";
 export default function publicLayout({ children }: { children: React.ReactNode }) {
     return (
       <div className={styles.publicLayout}>
-        <Header/>
+        <Components.Header/>
         <div className={styles.layoutContent}>
-          {children}
+          <Suspense fallback={<Loading/>}>
+            {children}
+          </Suspense>
         </div>
-        <Footer/>
+        <Components.Footer/>
       </div>
     )
 };

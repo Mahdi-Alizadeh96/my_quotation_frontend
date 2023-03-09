@@ -1,0 +1,8 @@
+.loadingContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: map-get($border-radius , medium);
+    width: 100%;
+    @include gradient-background('rtl');
+}

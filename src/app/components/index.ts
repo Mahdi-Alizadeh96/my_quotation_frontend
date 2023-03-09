@@ -1,9 +1,18 @@
 // <import components
+import { QuotationPreviewLoading } from './base'
 import Footer from "./footer/footer";
 import Header from "./header/header";
 // import components>
 
-export {
+/**
+ * @description export all components
+ */
+const components = {
     Footer,
-    Header
+    Header,
+    Base : {
+        QuotationPreviewLoading
+    }
 }
+
+export default components
