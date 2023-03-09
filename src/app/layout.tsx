@@ -13,6 +13,10 @@ export const metadata = {
 }
 // meta data>
 
+/**
+ * @description root layout with all base config for the project
+ * @config language and fonts and meta data
+ */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
   return (

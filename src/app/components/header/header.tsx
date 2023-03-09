@@ -7,7 +7,8 @@ import styles from './header.module.scss';
 // import styles>
 
 /**
- * @returns main header of site
+ * @description main header of site
+ * @includes link to main page
  */
 function Header() {
 

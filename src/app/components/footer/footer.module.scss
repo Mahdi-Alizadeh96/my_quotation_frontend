@@ -1,0 +1,12 @@
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 2rem 0;
+    font-size: map-get($font-size , small);
+    color: map-get($colors , dark);
+    .link {
+        font-style: italic;
+    }
+}
