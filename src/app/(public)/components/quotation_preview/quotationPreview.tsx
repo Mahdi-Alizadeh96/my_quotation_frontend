@@ -2,21 +2,23 @@
 import styles from './quotationPreview.module.scss'
 // import styles>
 
-function QuotationPreview({ con } : {con : string}) {
+function QuotationPreview({ postContent } : {postContent : any}) {
+
+  const { createdBy, quotationsBy, postContent : postContentText} = postContent;
+  
   return (
     <div className={styles.quotationPreview}>
       <div className={styles.WrittenBy}>
-        @Edgar
+        @{createdBy}
       </div>
       <div className={styles.quotationText}>
         <q>
-          To every action there is always opposed an equal reaction.
-          {con}
+          {postContentText}
         </q>
       </div>
       <div className={styles.specifications}>
         <time className={styles.time} dateTime='2023-03-14'>2023 03 14</time>
-        <span className={styles.quoteBy}>Isaac Newton</span>
+        <span className={styles.quoteBy}>{quotationsBy}</span>
       </div>
     </div>
   )

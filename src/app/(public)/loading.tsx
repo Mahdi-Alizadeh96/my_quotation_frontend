@@ -1,9 +1,9 @@
 // <import styles
-import styles from './loading.module.scss';
+import styles from './publicLoading.module.scss';
 // import styles>
 
 // <import components
-import Components from '@/app/components';
+import Components from '@/app/general_components';
 // import components>
 
 /**
