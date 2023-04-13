@@ -6,9 +6,9 @@ import { Suspense } from 'react';
 import styles from './publicLayout.module.scss';
 // import styles>
 
-// <import Global components
+// <import General components
 import Components from "@/app/general_components";
-// import Global components>
+// import General components>
 
 // <import loading
 import Loading from './loading';

@@ -1,7 +1,9 @@
 // <import components
 import { QuotationPreviewLoading } from './base'
+import Button from './button/button';
 import Footer from "./footer/footer";
 import Header from "./header/header";
+import Inputs from "./inputs/index";
 // import components>
 
 /**
@@ -12,7 +14,9 @@ const components = {
     Header,
     Base : {
         QuotationPreviewLoading
-    }
+    },
+    Inputs,
+    Button
 }
 
 export default components

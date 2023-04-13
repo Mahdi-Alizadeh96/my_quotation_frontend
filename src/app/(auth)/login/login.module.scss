@@ -1,3 +1,36 @@
+.loginPage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    color: map-get($colors , primary);
+}
+
 .loginContainer {
-    color: red;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    .label {
+        text-align: center;
+        font-size: map-get($font-size , '2xExtra-large');
+        margin-bottom: 1rem;
+    }
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    max-width: 20rem;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.signUpRedirect {
+    display: flex;
+    justify-content: center;
+    font-size: map-get($font-size , small);
+    margin-top: 0.5rem;
 }

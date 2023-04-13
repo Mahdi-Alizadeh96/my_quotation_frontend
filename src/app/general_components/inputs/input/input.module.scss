@@ -1,0 +1,12 @@
+.input {
+    margin: 0.5rem;
+    outline: unset;
+    border: unset;
+    background-color: map-get($colors , primary);
+    color: map-get($colors , white-color);
+    padding: 0.5rem;
+    font-size: map-get($font-size , small);
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: map-get($border-radius , extra-small);
+}
