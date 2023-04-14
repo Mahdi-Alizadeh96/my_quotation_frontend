@@ -9,4 +9,9 @@
     font-weight: 600;
     letter-spacing: 1px;
     border-radius: map-get($border-radius , extra-small);
+    
+    &::placeholder {
+        color: map-get($colors , white-color-low-opacity);
+        font-size: map-get($font-size , extra-small);
+    }
 }
