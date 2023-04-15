@@ -4,6 +4,10 @@
 import { useEffect, useState } from 'react';
 // import react>
 
+// <import packages
+import { useQuery } from '@tanstack/react-query';
+// import packages>
+
 // <import next
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -80,6 +84,22 @@ export default function Login() {
     };
 
   },[loginFormInputs]);
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: () =>
+      fetch('http://localhost:8080/v1/auth/login', {
+        method : 'post',
+        body : JSON.stringify({
+          email : "mahdi@gmail.com",
+          password: "1fgrtgg2"
+      })
+      }).then(
+        (res) => res.json()
+      )
+  });
+
+  console.log(isLoading, error, data);
   
   return (
     <>
