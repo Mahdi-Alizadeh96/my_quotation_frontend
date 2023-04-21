@@ -120,7 +120,7 @@ function Input(props : InputProps) {
     };
 
     return (
-        <input type={type} onChange={handleValidation} className={styles.input} placeholder={`Enter your ${type}`}/>
+        <input name={type} type={type} onChange={handleValidation} className={styles.input} placeholder={`Enter your ${type}`}/>
     );
 
 };

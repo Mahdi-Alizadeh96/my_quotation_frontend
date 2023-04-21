@@ -23,6 +23,7 @@ import Components from "@/app/general_components";
 
 // <import messages
 import messages from "@/lib/messages/messages.json";
+import axios from 'axios';
 // import messages>
 
 interface InputEvent {
@@ -46,7 +47,7 @@ export default function Login() {
   const [activeButton, setActiveButton] = useState(false);
   
   /**
-   * @description save input's status in state
+   * @description save input's value in state
    * @param event 
    */
   function handleInputs(event : InputEvent) : void {
@@ -58,11 +59,22 @@ export default function Login() {
   /**
    * @description submit login form
    */
-  function handleSubmit() : void {
+  async function handleSubmit() : Promise<void> {
     
     if (activeButton) {
 
-      router.push('/');
+      // router.push('/');
+
+      const {isLoading, error, data} = login;
+
+      if(data) {
+
+        console.log(isLoading, error,await data());
+
+      }
+      
+      
+      
 
     };
     
@@ -85,21 +97,25 @@ export default function Login() {
 
   },[loginFormInputs]);
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ['repoData'],
-    queryFn: () =>
-      fetch('http://localhost:8080/v1/auth/login', {
-        method : 'post',
-        body : JSON.stringify({
-          email : "mahdi@gmail.com",
-          password: "1fgrtgg2"
-      })
-      }).then(
-        (res) => res.json()
-      )
-  });
+  const login = useQuery({queryKey: ['login'], queryFn: () => postLogin});
 
-  console.log(isLoading, error, data);
+  async function postLogin() {
+
+    try {
+      const res = await axios.post('http://localhost:8080/v1/auth/login', {
+        email : "lots.go1@gmail.com",
+        password: "Aa15800853"
+      })
+  
+      return await res.data;
+      
+    } catch (error) {
+
+      return error
+
+    }
+
+  }
   
   return (
     <>

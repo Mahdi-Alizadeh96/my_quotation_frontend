@@ -20,34 +20,7 @@ interface ButtonProps {
  */
 function Button(props : ButtonProps) {
 
-    const { label, size, active, onClick } = props;
-
-    /**
-     * @description set size of custom button
-     * @returns button module style
-     */
-    function buttonSize() : string {
-
-        if (size) {
-
-            switch (size) {
-                case 'small':
-                    return styles.small
-                case 'large':
-                    return styles.large
-                case 'large':
-                    return styles.with100
-                default:
-                    return '';
-            };
-
-        } else {
-
-            return '';
-
-        };
-
-    };
+    const { label, size = '', active, onClick } = props;
 
     /**
      * @description set disable mode to button
@@ -77,7 +50,7 @@ function Button(props : ButtonProps) {
     };
 
   return (
-    <button className={`${styles.button} ${buttonSize()} ${activeButton()}`} disabled={!active} onClick={onClick}>
+    <button className={`${styles.button} ${styles[size]} ${activeButton()}`} disabled={!active} onClick={onClick}>
         { label }
     </button>
   );
