@@ -4,9 +4,9 @@
 import { useEffect, useState } from 'react';
 // import react>
 
-// <import packages
-import { useQuery } from '@tanstack/react-query';
-// import packages>
+// <import services
+import services from '../../../services';
+// import services>
 
 // <import next
 import Link from 'next/link';
@@ -23,7 +23,6 @@ import Components from "@/app/general_components";
 
 // <import messages
 import messages from "@/lib/messages/messages.json";
-import axios from 'axios';
 // import messages>
 
 interface InputEvent {
@@ -44,6 +43,11 @@ export default function Login() {
     password : null
   });
 
+  const loginApiCall :any = services.authApi.postLogin({ body : {
+    email : loginFormInputs.email,
+    password : loginFormInputs.password
+  }});
+
   const [activeButton, setActiveButton] = useState(false);
   
   /**
@@ -59,26 +63,24 @@ export default function Login() {
   /**
    * @description submit login form
    */
-  async function handleSubmit() : Promise<void> {
-    
-    if (activeButton) {
+  async function handleSubmit() {
 
-      // router.push('/');
+    try {
 
-      const {isLoading, error, data} = login;
-
-      if(data) {
-
-        console.log(isLoading, error,await data());
-
-      }
+      const response = await loginApiCall.mutateAsync();
       
+      console.log(response);
       
+      router.push('/')
+
+    } catch (error: any) {
       
+      console.log(error.response.data.message);
 
     };
-    
+
   };
+ 
 
   /**
    * @description check for active submit button when email & password format is correct
@@ -97,25 +99,6 @@ export default function Login() {
 
   },[loginFormInputs]);
 
-  const login = useQuery({queryKey: ['login'], queryFn: () => postLogin});
-
-  async function postLogin() {
-
-    try {
-      const res = await axios.post('http://localhost:8080/v1/auth/login', {
-        email : "lots.go1@gmail.com",
-        password: "Aa15800853"
-      })
-  
-      return await res.data;
-      
-    } catch (error) {
-
-      return error
-
-    }
-
-  }
   
   return (
     <>

@@ -34,3 +34,9 @@
     font-size: map-get($font-size , small);
     margin-top: 0.5rem;
 }
+
+.message {
+    text-align: center;
+    margin-top: 1rem;
+    color: map-get($colors , bold-gray);
+}
