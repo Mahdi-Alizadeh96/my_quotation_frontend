@@ -5,8 +5,12 @@ import { useEffect, useState } from 'react';
 // import react>
 
 // <import services
-import services from '../../../services';
+import services from '&/services';
 // import services>
+
+// <import packages
+import toast from 'react-hot-toast';
+// import packages>
 
 // <import next
 import Link from 'next/link';
@@ -64,23 +68,26 @@ export default function Login() {
    * @description submit login form
    */
   async function handleSubmit() {
-
+    
     try {
-
+      
       const response = await loginApiCall.mutateAsync();
       
-      console.log(response);
-      
-      router.push('/')
+      toast.success(response.message);
 
+      setTimeout(() => {
+
+        router.push('/')
+        
+      }, 500);
+      
     } catch (error: any) {
       
-      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
 
     };
 
   };
- 
 
   /**
    * @description check for active submit button when email & password format is correct
