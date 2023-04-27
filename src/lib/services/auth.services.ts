@@ -1,29 +1,33 @@
-// <import api handler
-import query from './apiHandlers';
-// import api handler>
+// <import handler
+import requestModel from "./apiHandlers";
+// import handler>
 
-const baseUrlRoot = 'auth';
+// <import types
+import { RequestObject } from "&/types";
+// import types>
 
-interface RequestData {
-    body : object
-};
+class Auth {
 
-function postLogin(req : RequestData) {
+    url : string
+    requestObj ?: object
 
-    const requestData = {
-        url : baseUrlRoot + '/login',
-        body : req.body
+    constructor( requestObj ?: object ) {
+        this.requestObj = requestObj;
+        this.url = "auth/login";
     };
 
-    return query.ApiMutation(requestData);
-    
+    async postLogin() {
+
+        const apiObj : RequestObject = {
+            url : this.url,
+            method : "post",
+            body : this.requestObj
+        };
+
+        return await requestModel.response(apiObj);
+
+    };
+
 };
 
-/**
- * @description export all auth api
- */
-const authApi = {
-    postLogin
-}
-
-export default authApi;
+export default Auth;

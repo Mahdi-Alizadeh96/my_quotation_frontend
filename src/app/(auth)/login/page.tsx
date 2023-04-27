@@ -27,6 +27,7 @@ import Components from "@/app/general_components";
 
 // <import messages
 import messages from "@/lib/messages/messages.json";
+import { useMutation } from '@tanstack/react-query';
 // import messages>
 
 interface InputEvent {
@@ -47,13 +48,10 @@ export default function Login() {
     password : null
   });
 
-  const loginApiCall :any = services.authApi.postLogin({ body : {
-    email : loginFormInputs.email,
-    password : loginFormInputs.password
-  }});
-
   const [activeButton, setActiveButton] = useState(false);
-  
+
+  const loginApiCall = useMutation({ mutationFn: async () => await new services.authApi(loginFormInputs).postLogin() });
+
   /**
    * @description save input's value in state
    * @param event 
@@ -68,24 +66,31 @@ export default function Login() {
    * @description submit login form
    */
   async function handleSubmit() {
-    
-    try {
       
       const response = await loginApiCall.mutateAsync();
-      
-      toast.success(response.message);
 
-      setTimeout(() => {
+      if (response) {
 
-        router.push('/')
-        
-      }, 500);
-      
-    } catch (error: any) {
-      
-      toast.error(error.response.data.message);
+        if ( response?.type ) {
+          
+          toast.success(response.message);
 
-    };
+          console.log(response);
+          
+
+          setTimeout(() => {
+
+            // router.push('/');
+
+          }, 500);
+          
+        } else {
+          
+          toast.error(response.message);
+  
+        };
+
+      };
 
   };
 

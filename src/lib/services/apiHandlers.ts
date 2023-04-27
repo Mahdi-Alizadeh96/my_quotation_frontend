@@ -1,66 +1,93 @@
 // <import packages
-import { useQuery, useMutation } from '@tanstack/react-query';
-import axios from 'axios';
+import axios from "axios";
+import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 // import packages>
 
-interface ApiQuery {
-  queryName : string,
-  url : string
-}
+// <import types
+import { RequestObject } from "&/types";
+// import types>
 
-/**
- * @param data data object to create api call 
- * @returns react query response object
- */
-function ApiQuery(data: ApiQuery) {
+class ApiHandlers {
 
-  const { queryName, url } = data;
+  async createApiCall( requestObj : RequestObject ) {
 
-    const query = useQuery({queryKey: [queryName],queryFn: async () => {
+    const { method = "get", url, body = null, params = null, contentType = "application/json" } = requestObj;
 
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_ROOT}${url}`)
-    
-      return res.data;
+    const token = getCookie("token");
 
-    }});    
-
-    return query;
-
-};
-
-interface ApiMutation {
-  body : object,
-  method ?: 'post',
-  url : string
-}
-
-/**
- * @param data data object to create api call 
- * @returns react query mutation response object
- */
-function ApiMutation(data: ApiMutation) {
-
-  const { body, method = 'post', url } = data;
-
-  const mutation = useMutation( async () => {
-  
-    const response = await axios({
-      url : `${process.env.NEXT_PUBLIC_BASE_ROOT}${url}`,
+    const defaultReqObj = {
       method,
-      data : body
-    });
+      url : `${process.env.NEXT_PUBLIC_BASE_ROOT}${url}`,
+      headers : {
+        "accept": "application/json",
+        "Content-Type": contentType,
+        "Authorization" : token
+      },
+      params
+    };
 
-    return response.data;
-  
-  });
+    const reqObjWithBody = {...defaultReqObj, data : body};
 
-  return mutation;
-  
+    return await axios(!body ? defaultReqObj : reqObjWithBody);
+
+  };
+
+  async response( request : RequestObject ) {
+
+    try {
+        
+      const response = await this.createApiCall(request);
+      
+      if (response.headers.authorization) {
+        
+        setCookie("token", response.headers.authorization);
+        
+      };
+
+      if( response.status === 200 ||response.status === 201 ||response.status === 202 ) {
+
+        if (response.data) {
+
+          return { type : true, message : response.data.message, data : response.data.data };
+
+        } else {
+
+          return { type : false, message : "Error", data : null };
+
+        };
+
+      };
+
+    } catch (error) {
+
+      return this.fail(error);
+
+    };
+
+  };
+
+  async fail(e : any) {
+    
+      if(e?.response?.status === 403 || e?.response?.status === 401) {
+
+        deleteCookie('token');
+
+        window.location.href = '/login';
+
+      };
+
+      let message : string = e?.response?.data?.message;
+
+      return {
+        type:false,
+        message : message ||  "Failed to handle your request",
+        data : null
+      };
+
+  };
+
 };
 
-const queries = {
-  ApiQuery,
-  ApiMutation
-}
+const requestModel = new ApiHandlers();
 
-export default queries;
+export default requestModel;
