@@ -7,6 +7,6 @@ import Input from "./input/input";
  */
 const Inputs = {
     Input
-}
+};
 
 export default Inputs;

@@ -6,10 +6,16 @@ import { ChangeEvent } from 'react';
 import styles from './input.module.scss';
 // import styles>
 
+// <validation
+import validations from '@/lib/validations';
+// validation>
+
 // <types
 interface InputProps {
+    name : string
     type : "text" | "password" | "email",
-    validation : Function
+    validation : Function,
+    placeholder : string
 }
 // types>
 
@@ -18,7 +24,7 @@ interface InputProps {
  */
 function Input(props : InputProps) {
 
-    const { type, validation } = props;
+    const { type, name, validation, placeholder } = props;
 
     /**
      * @description send input's value to validation functions based by it's type
@@ -33,94 +39,25 @@ function Input(props : InputProps) {
 
             case 'email':
 
-                return validation(emailValidation(value));
+                return validation(validations.emailValidation(value));
 
             case 'password':
 
-                return validation(passwordValidation(value));
+                return validation(validations.passwordValidation(value));
 
             default:
 
-                break;
+            return validation({
+                type : name || type,
+                value
+            });
 
         };
 
-    };
-
-    interface InputEvent {
-        type : string
-        value : string | null
-    };
-
-    let validationResult : InputEvent = { // final result
-        type : '',
-        value : null
-    };
-
-    /**
-     * @description check email format
-     * @param value input value
-     * @returns validationResult
-     */
-    function emailValidation(value : string) {
-
-        const emailRegex : RegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-        const checkReg = emailRegex.test(value);
-
-        if (!checkReg) {
-
-            validationResult = {
-                value : null,
-                type : 'email'
-            };
-
-        } else {
-
-            validationResult = {
-                value,
-                type : 'email'
-            };
-
-        };
-
-        return validationResult;
-        
-    };
-
-    /**
-     * @description check password format
-     * @param value input value
-     * @returns validationResult
-     */
-    function passwordValidation(value : string) {
-
-        const passwordRegex : RegExp = /^.{6,}$/;
-
-        const checkReg = passwordRegex.test(value);
-
-        if (!checkReg) {
-
-            validationResult = {
-                value : null,
-                type : 'password'
-            };
-
-        } else {
-
-            validationResult = {
-                value,
-                type : 'password'
-            };
-    
-        };
-
-        return validationResult;
-        
     };
 
     return (
-        <input name={type} type={type} onChange={handleValidation} className={styles.input} placeholder={`Enter your ${type}`}/>
+        <input name={name} type={type} onChange={handleValidation} className={styles.input} placeholder={placeholder}/>
     );
 
 };

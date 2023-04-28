@@ -17,6 +17,11 @@ const components = {
     },
     Inputs,
     Button
+};
+
+export {
+    Inputs,
+    Button
 }
 
 export default components

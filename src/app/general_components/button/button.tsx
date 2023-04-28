@@ -1,5 +1,5 @@
 // <import types
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 // import types>
 
 // <import styles
@@ -8,10 +8,11 @@ import styles from './button.module.scss';
 
 // <types
 interface ButtonProps {
-    label : string,
+    label ?: string,
     size ?: 'small' | 'large' | 'with100',
     onClick ?: MouseEventHandler<HTMLButtonElement>,
-    active ?: boolean
+    active ?: boolean,
+    children ?: ReactNode
 }
 // types>
 
@@ -20,7 +21,7 @@ interface ButtonProps {
  */
 function Button(props : ButtonProps) {
 
-    const { label, size = '', active, onClick } = props;
+    const { label, size = '', active, onClick, children } = props;
 
     /**
      * @description set disable mode to button
@@ -51,7 +52,7 @@ function Button(props : ButtonProps) {
 
   return (
     <button className={`${styles.button} ${styles[size]} ${activeButton()}`} disabled={!active} onClick={onClick}>
-        { label }
+        { children || label }
     </button>
   );
 

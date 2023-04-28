@@ -22,7 +22,7 @@ import styles from './login.module.scss';
 // import styles>
 
 // <import General components
-import Components from "@/app/general_components";
+import { Inputs, Button } from "@/app/general_components";
 // import General components>
 
 // <import messages
@@ -41,8 +41,10 @@ interface InputEvent {
 */
 export default function Login() {
 
+  // use hooks
   const router = useRouter();
 
+  // use states 
   const [loginFormInputs, setLoginFormInputs] = useState({
     email : null,
     password : null
@@ -50,6 +52,7 @@ export default function Login() {
 
   const [activeButton, setActiveButton] = useState(false);
 
+  // use react query
   const loginApiCall = useMutation({ mutationFn: async () => await new services.authApi(loginFormInputs).postLogin() });
 
   /**
@@ -74,13 +77,10 @@ export default function Login() {
         if ( response?.type ) {
           
           toast.success(response.message);
-
-          console.log(response);
           
-
           setTimeout(() => {
 
-            // router.push('/');
+            router.push('/');
 
           }, 500);
           
@@ -121,11 +121,11 @@ export default function Login() {
         <div className={styles.loginContainer}>
           <label className={styles.label}>Login</label>
           <div className={styles.inputs}>
-            <Components.Inputs.Input validation={handleInputs} type={'email'}/>
-            <Components.Inputs.Input validation={handleInputs} type={'password'}/>
+            <Inputs.Input name='email' validation={handleInputs} type={'email'} placeholder={"Enter your email"}/>
+            <Inputs.Input name='password' validation={handleInputs} type={'password'} placeholder={"Enter your password"}/>
           </div>
           <div className={styles.buttonContainer}>
-            <Components.Button label='Submit' size='large' active={activeButton} onClick={handleSubmit}/>
+            <Button label='Submit' size='large' active={activeButton} onClick={handleSubmit}/>
           </div>
           <div className={styles.signUpRedirect}>
             <Link href='/sign-up'>{messages.auth.dontHaveAnyAccount}</Link>
