@@ -31,15 +31,8 @@ function Button(props : ButtonProps) {
 
         let buttonStatus = ""
 
-        if (active !== undefined) { // check if active props passed to component
-
-            if (active === false) {
-
-                buttonStatus = styles.disable;
-
-            };
-
-        };
+        // check if active props passed to component
+        if (active !== undefined && active === false) buttonStatus = styles.disable;
 
         return buttonStatus;
 
