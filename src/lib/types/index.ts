@@ -5,3 +5,8 @@ export type RequestObject = {
     params ?: object
     contentType ?: string
 };
+
+export type InputEvent = {
+    type : string
+    value : string | null
+  };

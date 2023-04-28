@@ -30,10 +30,9 @@ import messages from "@/lib/messages/messages.json";
 import { useMutation } from '@tanstack/react-query';
 // import messages>
 
-interface InputEvent {
-  type : string
-  value : string | null
-};
+// <import types
+import { InputEvent } from '&/types';
+// import types>
 
 /**
  * @description home page of site
