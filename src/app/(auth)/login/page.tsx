@@ -69,27 +69,27 @@ export default function Login() {
    */
   async function handleSubmit() {
       
-      const response = await loginApiCall.mutateAsync();
+    const response = await loginApiCall.mutateAsync();
 
-      if (response) {
+    if (response) {
 
-        if ( response?.type ) {
-          
-          toast.success(response.message);
-          
-          setTimeout(() => {
+      if ( response?.type ) {
+        
+        toast.success(response.message);
+        
+        setTimeout(() => {
 
-            router.push('/');
+          router.push('/');
 
-          }, 500);
-          
-        } else {
-          
-          toast.error(response.message);
-  
-        };
+        }, 500);
+        
+      } else {
+        
+        toast.error(response.message);
 
       };
+
+    };
 
   };
 

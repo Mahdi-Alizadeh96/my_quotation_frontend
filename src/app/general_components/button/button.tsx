@@ -21,7 +21,7 @@ interface ButtonProps {
  */
 function Button(props : ButtonProps) {
 
-    const { label, size = '', active, onClick, children } = props;
+    const { label, size = '', active = true, onClick, children } = props;
 
     /**
      * @description set disable mode to button
