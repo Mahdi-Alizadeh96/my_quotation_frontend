@@ -1,6 +1,6 @@
 {
   "name": "mq_front",
-  "version": "0.1.00",
+  "version": "0.1.10",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3006",
