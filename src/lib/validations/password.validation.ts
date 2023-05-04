@@ -1,6 +1,7 @@
 // <types
 interface ValidationResult {
     type : 'password',
+    keyName : string
     value : null | string
 }
 // types>
@@ -10,7 +11,7 @@ interface ValidationResult {
  * @param value input value
  * @returns validationResult
  */
-export default function passwordValidation(value : string) {
+export default function passwordValidation(value : string,  keyName : string) {
 
     const passwordRegex : RegExp = /^.{6,}$/;
 
@@ -18,6 +19,7 @@ export default function passwordValidation(value : string) {
 
     let validationResult : ValidationResult = {
         type : 'password',
+        keyName,
         value : null
     };
 

@@ -6,6 +6,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
 // import packages>
 
+// <import styles
+import styles from './auth.module.scss';
+// import styles>
+
 // <import configs
 import toastOptions from '&/configs/toastOptions';
 // import configs>
@@ -17,6 +21,8 @@ const queryClient = new QueryClient();
  * @returns Auth Layout
  */
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
+
+    queryClient.setQueryData([ 'signUpState' ], "1");
 
     return (
             <QueryClientProvider client={queryClient}>

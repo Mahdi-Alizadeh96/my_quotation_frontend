@@ -1,0 +1,10 @@
+// <local mixins
+@import '../../../auth.module.scss';
+// local mixins>
+
+.sendOtp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include auth-box();
+};

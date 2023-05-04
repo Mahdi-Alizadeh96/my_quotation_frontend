@@ -8,5 +8,7 @@ export type RequestObject = {
 
 export type InputEvent = {
     type : string
+    name : string
+    keyName : string
     value : string | null
   };

@@ -4,34 +4,35 @@
 import styles from './signUp.module.scss';
 // import styles>
 
-// <import packages
-import { useQueryClient } from '@tanstack/react-query';
-import { Button } from '@/app/general_components';
-import Link from 'next/link';
-// import packages>
+// <import RQ
+import { useQuery } from '@tanstack/react-query';
+// import RQ>
+
+// <import components
+import { SignUpForm, VerifyOtp, SendOtp } from './components';
+// import components>
 
 /**
  * @description sing up page
  */
 export default function Signup() {
 
-  // use react query
-  const queryClient = useQueryClient();
-
-  queryClient.setQueryData([ 'myData' ], "data");
-
-  function handleClick() {
-
-    // console.log(queryClient.getQueryData(['myData']));
-    
-  };
+  const { data : signUpState } = useQuery(['signUpState'], {
+    select: (data) => data,
+  });
 
   return (
-    <div className={styles.singUp}>
-      <Button label='Submit' onClick={handleClick}/>
-        <Link href='/login'>
-          login
-        </Link>
-    </div>
+    <>
+      <header>
+        <title>Sign up</title>
+      </header>
+      <main className={styles.authPage}>
+        <div className={styles.authContainer}>
+          {
+            signUpState === '1' ? <SendOtp/> : signUpState === '2' ? <VerifyOtp/> : <SignUpForm/>
+          }
+        </div>
+      </main>
+    </>
   )
 };

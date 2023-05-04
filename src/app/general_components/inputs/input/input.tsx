@@ -13,8 +13,9 @@ import validations from '@/lib/validations';
 // <types
 interface InputProps {
     name : string
-    type : "text" | "password" | "email",
+    type : "text" | "password" | "email" | "number",
     validation : Function,
+    keyName : string,
     placeholder : string
 }
 // types>
@@ -24,7 +25,7 @@ interface InputProps {
  */
 function Input(props : InputProps) {
 
-    const { type, name, validation, placeholder } = props;
+    const { type, name, validation, placeholder, keyName } = props;
 
     /**
      * @description send input's value to validation functions based by it's type
@@ -39,16 +40,20 @@ function Input(props : InputProps) {
 
             case 'email':
 
-                return validation(validations.emailValidation(value));
+                return validation(validations.emailValidation(value, keyName));
 
             case 'password':
 
-                return validation(validations.passwordValidation(value));
+                return validation(validations.passwordValidation(value, keyName));
+
+            case 'number':
+
+                return validation(validations.numberValidation(value ,keyName));
 
             default:
 
             return validation({
-                type : name || type,
+                type : keyName || name || type,
                 value
             });
 

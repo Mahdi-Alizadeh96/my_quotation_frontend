@@ -12,6 +12,10 @@ import services from '&/services';
 import toast from 'react-hot-toast';
 // import packages>
 
+// <import RQ
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+// import RQ>
+
 // <import next
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -27,7 +31,6 @@ import { Inputs, Button } from "@/app/general_components";
 
 // <import messages
 import messages from "@/lib/messages/messages.json";
-import { useMutation } from '@tanstack/react-query';
 // import messages>
 
 // <import types
@@ -98,15 +101,7 @@ export default function Login() {
    */
   useEffect(() => {
 
-    if (loginFormInputs.email && loginFormInputs.password) {
-
-      setActiveButton(true);
-
-    } else {
-
-      setActiveButton(false);
-
-    };
+    setActiveButton((loginFormInputs.email && loginFormInputs.password) ? true : false);
 
   },[loginFormInputs]);
 
@@ -116,17 +111,17 @@ export default function Login() {
       <header>
         <title>Login</title>
       </header>
-      <main className={styles.loginPage}>
-        <div className={styles.loginContainer}>
+      <main className={styles.authPage}>
+        <div className={styles.authContainer}>
           <label className={styles.label}>Login</label>
           <div className={styles.inputs}>
-            <Inputs.Input name='email' validation={handleInputs} type={'email'} placeholder={"Enter your email"}/>
-            <Inputs.Input name='password' validation={handleInputs} type={'password'} placeholder={"Enter your password"}/>
+            <Inputs.Input keyName='email' name='email' validation={handleInputs} type={'email'} placeholder={"Enter your email"}/>
+            <Inputs.Input keyName='password' name='password' validation={handleInputs} type={'password'} placeholder={"Enter your password"}/>
           </div>
           <div className={styles.buttonContainer}>
             <Button label='Submit' size='large' active={activeButton} onClick={handleSubmit}/>
           </div>
-          <div className={styles.signUpRedirect}>
+          <div className={styles.redirect}>
             <Link href='/sign-up'>{messages.auth.dontHaveAnyAccount}</Link>
           </div>
         </div>

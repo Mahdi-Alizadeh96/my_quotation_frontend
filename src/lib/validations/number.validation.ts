@@ -1,24 +1,24 @@
 // <types
 interface ValidationResult {
-    type : 'email',
+    type : 'number',
     keyName : string,
     value : null | string
 }
 // types>
 
 /**
- * @description check email format
+ * @description check number format
  * @param value input value
  * @returns validationResult
  */
-export default function emailValidation(value : string, keyName : string) {
+export default function numberValidation(value : string, keyName : string) {
 
-    const emailRegex : RegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const numberRegex : RegExp = /^[0-9]{4}$/;
 
-    const checkReg = emailRegex.test(value);
+    const checkReg = numberRegex.test(value);
 
     let validationResult : ValidationResult = {
-        type : 'email',
+        type : 'number',
         keyName,
         value : null
     };

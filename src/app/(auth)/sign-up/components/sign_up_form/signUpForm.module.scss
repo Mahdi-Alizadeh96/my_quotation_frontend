@@ -1,0 +1,20 @@
+// <local mixins
+@import '../../../auth.module.scss';
+// local mixins>
+
+.signUpForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include auth-box();
+    .changeEmail {
+        @include handlers();
+    }
+    .description {
+        max-width: 17rem;
+        font-style: italic;
+        text-align: center;
+        color : map-get($colors , secondary)
+    }
+};

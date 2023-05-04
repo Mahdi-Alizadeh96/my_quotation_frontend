@@ -1,0 +1,16 @@
+// <local mixins
+@import '../../../auth.module.scss';
+// local mixins>
+
+.verifyOtp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include auth-box();
+    .resend {
+        @include handlers();
+    }
+    .changeEmail {
+        @include handlers();
+    }
+};

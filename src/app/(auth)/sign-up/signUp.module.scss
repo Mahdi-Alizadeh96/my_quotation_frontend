@@ -1,3 +1,5 @@
-.singUp {
-    
-}
+// <local mixins
+@import '../auth.module.scss';
+// local mixins>
+
+@include auth-layout();
