@@ -86,16 +86,13 @@ export default function SignUpForm() {
   };
   
   /**
-   * @description check for active submit button when email & password format is correct
+   * @description check for active submit button when password format is correct
    */
   useEffect(() => {
 
     setActiveButton( signUpFormInputs.password ? true : false );
 
-  },[signUpFormInputs]);
-
-  console.log(signUpFormInputs);
-  
+  },[signUpFormInputs]); 
 
   return (
     <div className={styles.signUpForm}>

@@ -109,7 +109,7 @@ export default function VerifyOtp() {
   };
   
   /**
-   * @description check for active submit button when email & password format is correct
+   * @description check for active submit button otp code format is correct
    */
   useEffect(() => {
 

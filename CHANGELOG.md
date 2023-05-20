@@ -4,7 +4,7 @@
 
 ### Added
 
-- add login page
+- add sign up page
 
 ## [0.1.02] - 2023-04-13
 
